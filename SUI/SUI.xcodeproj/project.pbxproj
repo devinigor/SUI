@@ -7,17 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4888E9922BE41778009BE93B /* Sing for the Moment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4888E9912BE41778009BE93B /* Sing for the Moment.mp3 */; };
+		4888E9942BE422CF009BE93B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888E9932BE422CF009BE93B /* Model.swift */; };
+		4888E9962BE42618009BE93B /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4888E9952BE42618009BE93B /* PlayerViewModel.swift */; };
+		4888E99C2BE427D2009BE93B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4888E99B2BE427D2009BE93B /* Assets.xcassets */; };
+		4888E99E2BE42CF6009BE93B /* Lose yourself.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4888E99D2BE42CF6009BE93B /* Lose yourself.mp3 */; };
 		48E565732BE00612003E44F6 /* SUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E565722BE00612003E44F6 /* SUIApp.swift */; };
-		48E565752BE00612003E44F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E565742BE00612003E44F6 /* ContentView.swift */; };
-		48E565772BE00614003E44F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48E565762BE00614003E44F6 /* Assets.xcassets */; };
+		48E565752BE00612003E44F6 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E565742BE00612003E44F6 /* PlayerView.swift */; };
 		48E5657A2BE00614003E44F6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48E565792BE00614003E44F6 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4888E9912BE41778009BE93B /* Sing for the Moment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Sing for the Moment.mp3"; path = "../../../../../Downloads/Sing for the Moment.mp3"; sourceTree = "<group>"; };
+		4888E9932BE422CF009BE93B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		4888E9952BE42618009BE93B /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		4888E99B2BE427D2009BE93B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Downloads/Sui 2/Sui/Assets.xcassets"; sourceTree = "<group>"; };
+		4888E99D2BE42CF6009BE93B /* Lose yourself.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Lose yourself.mp3"; path = "../../../../../Downloads/Lose yourself.mp3"; sourceTree = "<group>"; };
 		48E5656F2BE00612003E44F6 /* SUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E565722BE00612003E44F6 /* SUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUIApp.swift; sourceTree = "<group>"; };
-		48E565742BE00612003E44F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		48E565762BE00614003E44F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48E565742BE00612003E44F6 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		48E565792BE00614003E44F6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,8 +60,10 @@
 			isa = PBXGroup;
 			children = (
 				48E565722BE00612003E44F6 /* SUIApp.swift */,
-				48E565742BE00612003E44F6 /* ContentView.swift */,
-				48E565762BE00614003E44F6 /* Assets.xcassets */,
+				4888E9952BE42618009BE93B /* PlayerViewModel.swift */,
+				4888E9932BE422CF009BE93B /* Model.swift */,
+				48E565742BE00612003E44F6 /* PlayerView.swift */,
+				4888E99B2BE427D2009BE93B /* Assets.xcassets */,
 				48E565782BE00614003E44F6 /* Preview Content */,
 			);
 			path = SUI;
@@ -62,6 +72,8 @@
 		48E565782BE00614003E44F6 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				4888E9912BE41778009BE93B /* Sing for the Moment.mp3 */,
+				4888E99D2BE42CF6009BE93B /* Lose yourself.mp3 */,
 				48E565792BE00614003E44F6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -126,7 +138,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				48E5657A2BE00614003E44F6 /* Preview Assets.xcassets in Resources */,
-				48E565772BE00614003E44F6 /* Assets.xcassets in Resources */,
+				4888E99C2BE427D2009BE93B /* Assets.xcassets in Resources */,
+				4888E9922BE41778009BE93B /* Sing for the Moment.mp3 in Resources */,
+				4888E99E2BE42CF6009BE93B /* Lose yourself.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48E565752BE00612003E44F6 /* ContentView.swift in Sources */,
+				4888E9942BE422CF009BE93B /* Model.swift in Sources */,
+				4888E9962BE42618009BE93B /* PlayerViewModel.swift in Sources */,
+				48E565752BE00612003E44F6 /* PlayerView.swift in Sources */,
 				48E565732BE00612003E44F6 /* SUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
