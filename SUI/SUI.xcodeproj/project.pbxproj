@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48D81D262BE5252900B68503 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D81D252BE5252900B68503 /* ActivityView.swift */; };
+		48D81D282BE5256200B68503 /* AutoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D81D272BE5256200B68503 /* AutoModel.swift */; };
+		48D81D2A2BE525A800B68503 /* CarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D81D292BE525A800B68503 /* CarViewModel.swift */; };
+		48D81D2C2BE5260900B68503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D81D2B2BE5260900B68503 /* Assets.xcassets */; };
 		48E565732BE00612003E44F6 /* SUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E565722BE00612003E44F6 /* SUIApp.swift */; };
 		48E565752BE00612003E44F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E565742BE00612003E44F6 /* ContentView.swift */; };
-		48E565772BE00614003E44F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48E565762BE00614003E44F6 /* Assets.xcassets */; };
 		48E5657A2BE00614003E44F6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48E565792BE00614003E44F6 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48D81D252BE5252900B68503 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		48D81D272BE5256200B68503 /* AutoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoModel.swift; sourceTree = "<group>"; };
+		48D81D292BE525A800B68503 /* CarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarViewModel.swift; sourceTree = "<group>"; };
+		48D81D2B2BE5260900B68503 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Downloads/Sui 3/Sui/Assets.xcassets"; sourceTree = "<group>"; };
 		48E5656F2BE00612003E44F6 /* SUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E565722BE00612003E44F6 /* SUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUIApp.swift; sourceTree = "<group>"; };
 		48E565742BE00612003E44F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		48E565762BE00614003E44F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48E565792BE00614003E44F6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,7 +59,10 @@
 			children = (
 				48E565722BE00612003E44F6 /* SUIApp.swift */,
 				48E565742BE00612003E44F6 /* ContentView.swift */,
-				48E565762BE00614003E44F6 /* Assets.xcassets */,
+				48D81D272BE5256200B68503 /* AutoModel.swift */,
+				48D81D252BE5252900B68503 /* ActivityView.swift */,
+				48D81D292BE525A800B68503 /* CarViewModel.swift */,
+				48D81D2B2BE5260900B68503 /* Assets.xcassets */,
 				48E565782BE00614003E44F6 /* Preview Content */,
 			);
 			path = SUI;
@@ -125,8 +134,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48D81D2C2BE5260900B68503 /* Assets.xcassets in Resources */,
 				48E5657A2BE00614003E44F6 /* Preview Assets.xcassets in Resources */,
-				48E565772BE00614003E44F6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48D81D282BE5256200B68503 /* AutoModel.swift in Sources */,
 				48E565752BE00612003E44F6 /* ContentView.swift in Sources */,
+				48D81D2A2BE525A800B68503 /* CarViewModel.swift in Sources */,
 				48E565732BE00612003E44F6 /* SUIApp.swift in Sources */,
+				48D81D262BE5252900B68503 /* ActivityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
