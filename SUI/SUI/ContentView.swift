@@ -9,113 +9,77 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isPresentAlert = false
-    @State private var isShowAlert = false
-    @State private var isPresentSheet = false
-    @State private var isShowSheet = false
+    // MARK: - Constants
     
-    @State var secondAlertText = "Пример Alert с 2 \nкнопками и логикой"
-    @State var secondSheetText = "Пример ActionSheet \nкнопками и логикой"
-    @State var newText = "The text has been changed"
-    @State var coke = "Coke"
-    @State var pepsi = "Pepsi"
-    @State var delete = "O_o"
-    
+    private enum Constants {
+        static let title = "169.ru"
+        static let logoImage = "https://bigfoto.name/photo/uploads/posts/2023-03/1679046016_bigfoto-name-p-zhirnii-muzhik-na-divane-11.jpg"
+        static let getButtonnTitle = "Get Started"
+        static let qustionsTitle = "Don't have an account?"
+        static let signButtonTitle = "Sing in here"
+    }
     var body: some View {
-        
-        VStack(spacing: 20) {
-            Text("Alert & ActionSheet")
-                .lineLimit(1)
-                .font(.custom("Inter-Bold", fixedSize: 20))
-                .offset(y: -50)
-            
-            HStack {
-                Text("Пример Alert")
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button {
-                    isPresentAlert = true
-                } label: {
-                    Text("Показать")
+        ZStack {
+            LinearGradient(colors: [.gradientTop, .gradientBottom], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+            VStack{
+                Text(Constants.title)
+                    .font(.largeTitle.bold())
+                    .foregroundColor(.white)
+                AsyncImage(url: URL( string: Constants.logoImage), scale: 2) { image in
+                    image.resizable()
+                } placeholder: {
+                    ProgressView()
                 }
-                .frame(width: 150, height: 40)
-                .shadow(radius: 8)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
-                .alert(isPresented: $isPresentAlert, content: {
-                    Alert(title: Text("Download file?"), message: nil, dismissButton: .default(Text("Ok")))
-                })
-            }
-            
-            HStack {
-                Text(secondAlertText)
-                    .font(.custom("Inter-Bold", fixedSize: 14))
+                .frame(width: 200, height: 200)
                 Spacer()
-                Button(action: {
-                    isShowAlert = true
-                }) {
-                    Text("Показать")
-                }.alert(isPresented: $isShowAlert) {
-                    Alert(title: Text("Do you want to change the text?"), message: nil, primaryButton: .default(Text("Сhange the text"), action: {
-                        secondAlertText = newText
-                    }), secondaryButton: .cancel())
-                }
-                .frame(width: 150, height: 40)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .shadow(radius: 8)
-                .cornerRadius(10)
-            }
-            
-            HStack {
-                Text("Пример ActionSheet")
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button(action: {
-                    isPresentSheet = true
-                }) {
-                    Text("Показать")
-                }.actionSheet(isPresented: $isPresentSheet) {
-                    ActionSheet(title: Text("Coke or Pepsi?"), message: nil, buttons: [.default(Text("Coke")), .default(Text("Pepsi"))])
-                }
-                .frame(width: 150, height: 40)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .shadow(radius: 8)
-                .cornerRadius(10)
-            }
-            
-            HStack {
-                Text(secondSheetText)
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button(action:  {
-                    isShowSheet = true
-                }) {
-                    Text("Показать")
-                }.actionSheet(isPresented: $isShowSheet) {
-                    ActionSheet(title: Text("Coke or Pepsi?"), message: Text("Please, make a choice"), buttons: [.default(Text("Coke"), action: {
-                        secondSheetText = coke
-                    }), .default(Text("Pepsi"), action: {
-                        secondSheetText = pepsi
-                    }), .destructive(Text("Delete"), action: {
-                        secondSheetText = delete
-                    })])
-                }
-                .frame(width: 150, height: 40)
-                .shadow(radius: 8)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
+                    .frame(height: 75)
+                buttonStack
+                    .onTapGesture {
+                        UIApplication.shared.endEditing()
+                    }
             }
         }
-        .padding(.top, -300)
-        .padding()
+    }
+    
+    @State private var signUpPresent = false
+    @State private var isShowDetailView = false
+    private var buttonStack: some View {
+        VStack(spacing: 5){
+            Button {
+                isShowDetailView = true
+            } label: {
+                Text(Constants.getButtonnTitle)
+                    .frame(width: 300, height: 55)
+                    .foregroundStyle(LinearGradient(colors: [.gradientTop, .gradientBottom], startPoint: .top, endPoint: .bottom))
+            }
+            .background(Color.white)
+            .cornerRadius(27)
+            .shadow(color: .black.opacity(0.4) ,radius: 10, x: 1, y: 9)
+            Spacer()
+                .frame(height: 75)
+            Text(Constants.qustionsTitle)
+                .foregroundColor(.white)
+            Spacer()
+                .frame(height: 20)
+            Button(Constants.signButtonTitle) {
+                signUpPresent = true
+            }
+            .font(.title.bold())
+            .foregroundColor(.white)
+            Divider()
+                .background(Color.white)
+                .frame(width: 130)
+        }
+        .fullScreenCover(isPresented: $signUpPresent, content: {
+            SignUpView()
+        })
+        .fullScreenCover(isPresented: $isShowDetailView, content: {
+            DetailView()
+        })
     }
 }
 
 #Preview {
     ContentView()
 }
-
