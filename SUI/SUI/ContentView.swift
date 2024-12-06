@@ -4,118 +4,133 @@
 //
 //  Created by Игорь Девин on 29.04.2024.
 //
-
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State private var isPresentAlert = false
-    @State private var isShowAlert = false
-    @State private var isPresentSheet = false
-    @State private var isShowSheet = false
-    
-    @State var secondAlertText = "Пример Alert с 2 \nкнопками и логикой"
-    @State var secondSheetText = "Пример ActionSheet \nкнопками и логикой"
-    @State var newText = "The text has been changed"
-    @State var coke = "Coke"
-    @State var pepsi = "Pepsi"
-    @State var delete = "O_o"
-    
+    var titleSettings = ["Авиарежим", "Wi-Fi", "Bluetooth" , "Сотовая связь", "Режим модема", "VPN"]
+    @State private var aviaToogle = false
+    @State private var vpnToogle = false
+    @State private var selectMode = ["Подключено", "Не подключено"]
+    @State private var selectWifi = 0
+    @State private var selectBluetooth = 0
+    @State private var selectMobile = 0
+    @State private var selectModem = 0
     var body: some View {
-        
-        VStack(spacing: 20) {
-            Text("Alert & ActionSheet")
-                .lineLimit(1)
-                .font(.custom("Inter-Bold", fixedSize: 20))
-                .offset(y: -50)
-            
-            HStack {
-                Text("Пример Alert")
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button {
-                    isPresentAlert = true
-                } label: {
-                    Text("Показать")
+        NavigationView{
+            Form(content: {
+                    settingCloud()
+                Section{
+                    NavigationLink("IOS 17.2: уже доступно") {}
                 }
-                .frame(width: 150, height: 40)
-                .shadow(radius: 8)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
-                .alert(isPresented: $isPresentAlert, content: {
-                    Alert(title: Text("Download file?"), message: nil, dismissButton: .default(Text("Ok")))
-                })
+                otherSettings()
+            }).navigationTitle("Настройки")
+        }
+    }
+    func settingCloud() -> some View {
+        Section {
+            NavigationLink {
+            } label: {
+                VStack {
+                    HStack{
+                        Image("avatar")
+                        VStack(alignment: .leading){
+                            Text("Igor")
+                                .fontWeight(.bold)
+                            Text("Apple ID, iCloud, контент и покупки")
+                        }
+                    }
+                }
             }
-            
-            HStack {
-                Text(secondAlertText)
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button(action: {
-                    isShowAlert = true
-                }) {
-                    Text("Показать")
-                }.alert(isPresented: $isShowAlert) {
-                    Alert(title: Text("Do you want to change the text?"), message: nil, primaryButton: .default(Text("Сhange the text"), action: {
-                        secondAlertText = newText
-                    }), secondaryButton: .cancel())
+            NavigationLink("Предложения Apple ID") {}
+        }
+    }
+    
+    func otherSettings() -> some View {
+        Section {
+            VStack{
+                HStack{
+                    IconSetting(icon: "plane", color: .orange)
+                    Toggle(isOn: $aviaToogle) {
+                        Text(titleSettings[0])
+                    }
                 }
-                .frame(width: 150, height: 40)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .shadow(radius: 8)
-                .cornerRadius(10)
             }
-            
-            HStack {
-                Text("Пример ActionSheet")
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button(action: {
-                    isPresentSheet = true
-                }) {
-                    Text("Показать")
-                }.actionSheet(isPresented: $isPresentSheet) {
-                    ActionSheet(title: Text("Coke or Pepsi?"), message: nil, buttons: [.default(Text("Coke")), .default(Text("Pepsi"))])
+                HStack{
+                    IconSetting(icon: "wifi", color: .blue)
+                    if #available(iOS 16.0, *) {
+                        Picker(selection: $selectWifi) {
+                            ForEach(0...1, id: \.self){ item in
+                                Text(selectMode[item])
+                            }
+                        } label: {
+                            Text(titleSettings[1])
+                        }.pickerStyle(.navigationLink)
+                    } else {
+                    }
                 }
-                .frame(width: 150, height: 40)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .shadow(radius: 8)
-                .cornerRadius(10)
+                HStack{
+                    IconSetting(icon: "bluetooth", color: .blue)
+                    if #available(iOS 16.0, *) {
+                        Picker(selection: $selectBluetooth) {
+                            ForEach(0...1, id: \.self){ item in
+                                Text(selectMode[item])
+                            }
+                        } label: {
+                            Text(titleSettings[2])
+                        }.pickerStyle(.navigationLink)
+                    } else {
+                    }
+                }
+                HStack{
+                    IconSetting(icon: "phone", color: .green)
+                    if #available(iOS 16.0, *) {
+                        Picker(selection: $selectMobile) {
+                            ForEach(0...1, id: \.self){ item in
+                                Text(selectMode[item])
+                            }
+                        } label: {
+                            Text(titleSettings[3])
+                        }.pickerStyle(.navigationLink)
+                    } else {
+                    }
             }
-            
-            HStack {
-                Text(secondSheetText)
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button(action:  {
-                    isShowSheet = true
-                }) {
-                    Text("Показать")
-                }.actionSheet(isPresented: $isShowSheet) {
-                    ActionSheet(title: Text("Coke or Pepsi?"), message: Text("Please, make a choice"), buttons: [.default(Text("Coke"), action: {
-                        secondSheetText = coke
-                    }), .default(Text("Pepsi"), action: {
-                        secondSheetText = pepsi
-                    }), .destructive(Text("Delete"), action: {
-                        secondSheetText = delete
-                    })])
+                HStack{
+                    IconSetting(icon: "modem", color: .green)
+                    if #available(iOS 16.0, *) {
+                        Picker(selection: $selectModem) {
+                            ForEach(0...1, id: \.self){ item in
+                                Text(selectMode[item])
+                            }
+                        } label: {
+                            Text(titleSettings[4])
+                        }.pickerStyle(.navigationLink)
+                    } else {
+                    }
                 }
-                .frame(width: 150, height: 40)
-                .shadow(radius: 8)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
+            HStack{
+                IconSetting(icon: "global", color: .blue)
+                Toggle(isOn: $vpnToogle) {
+                    Text(titleSettings[5])
+                }
             }
         }
-        .padding(.top, -300)
-        .padding()
+    }
+}
+
+struct IconSetting: View {
+    var icon: String
+    var color: Color
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 6)
+                .fill(color)
+                .frame(width: 30, height: 30)
+            Image(icon)
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .preferredColorScheme(.dark)
 }
-
