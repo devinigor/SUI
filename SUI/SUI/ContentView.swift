@@ -9,109 +9,159 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isPresentAlert = false
-    @State private var isShowAlert = false
-    @State private var isPresentSheet = false
-    @State private var isShowSheet = false
-    
-    @State var secondAlertText = "Пример Alert с 2 \nкнопками и логикой"
-    @State var secondSheetText = "Пример ActionSheet \nкнопками и логикой"
-    @State var newText = "The text has been changed"
-    @State var coke = "Coke"
-    @State var pepsi = "Pepsi"
-    @State var delete = "O_o"
+    @State private var isOnToggle = false
+    @State private var primaryCardAccount = 50000.0
+    @State private var isShowingActionSheet = false
+    @State private var isShowingAlert = false
     
     var body: some View {
-        
-        VStack(spacing: 20) {
-            Text("Alert & ActionSheet")
-                .lineLimit(1)
-                .font(.custom("Inter-Bold", fixedSize: 20))
-                .offset(y: -50)
-            
-            HStack {
-                Text("Пример Alert")
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button {
-                    isPresentAlert = true
-                } label: {
-                    Text("Показать")
+        VStack {
+            ZStack {
+                HStack {
+                    VStack() {
+                        Button(action: {
+                        }) {
+                            VStack {
+                                Image("logoCard")
+                            }
+                            HStack {
+                                VStack {
+                                    Text("50 000,00 ₽")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    
+                                    Text("MIR  **0001")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                        Button(action: {
+                        }) {
+                            VStack {
+                                Image("logoCard")
+                            }
+                            HStack {
+                                VStack {
+                                    Text("100 000,00 ₽")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    
+                                    Text("MIR  **0002")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                        .padding(.leading, 10)
+                        Button(action: {
+                        }) {
+                            VStack {
+                                Image("logoCard")
+                            }
+                            HStack {
+                                VStack {
+                                    Text("1 000,00 ₽")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    
+                                    Text("MIR  **0003")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                        Spacer()
+                    }
+                    Spacer()
                 }
-                .frame(width: 150, height: 40)
-                .shadow(radius: 8)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
-                .alert(isPresented: $isPresentAlert, content: {
-                    Alert(title: Text("Download file?"), message: nil, dismissButton: .default(Text("Ok")))
-                })
-            }
-            
-            HStack {
-                Text(secondAlertText)
-                    .font(.custom("Inter-Bold", fixedSize: 14))
+                RoundedRectangle(cornerRadius: 0).fill(Color("basicBackgroundColor"))
+                    .offset(x: isOnToggle ? 300: 0)
+                    .animation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.3))
+                    .edgesIgnoringSafeArea(.all)
                 Spacer()
-                Button(action: {
-                    isShowAlert = true
-                }) {
-                    Text("Показать")
-                }.alert(isPresented: $isShowAlert) {
-                    Alert(title: Text("Do you want to change the text?"), message: nil, primaryButton: .default(Text("Сhange the text"), action: {
-                        secondAlertText = newText
-                    }), secondaryButton: .cancel())
+                VStack {
+                    Text("Карта 1")
+                        .font(.custom("Inter-Bold", size: 20))
+                        .padding(.leading, -160)
+                        .padding(.bottom, 20)
+                    ZStack(alignment: .bottom) {
+                        Image("backgroundCard")
+                        Text(String(primaryCardAccount))
+                            .font(.custom("Inter-Bold", size: 20))
+                            .foregroundColor(.white)
+                            .padding(.bottom, 160)
+                            .padding(.leading, -160)
+                        Text("Доступно")
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 135)
+                            .padding(.leading, -160)
+                        Image("logoCardMir")
+                            .padding(.leading, 225)
+                            .padding(.bottom, 15)
+                    }
+                    .padding(.bottom)
+                    ZStack {
+                        Image("backgroundOperationsCard")
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                isShowingActionSheet.toggle()
+                            }) {
+                                VStack {
+                                    Image("replenishIcon")
+                                        .padding(.bottom, 10)
+                                    Text("Пополнить")
+                                        .padding(.bottom)
+                                        .foregroundColor(.black)
+                                }
+                            }
+                            .actionSheet(isPresented: $isShowingActionSheet) {
+                                ActionSheet(title: Text("Хотите пополнить счет?"), message: nil, buttons: [.default(Text("Пополнить на 1000 ₽"), action: {
+                                    primaryCardAccount += 1000
+                                }), .cancel()])
+                            }
+                            Spacer()
+                            Button(action: {
+                                isShowingAlert.toggle()
+                            }) {
+                                VStack {
+                                    Image("translateIcon")
+                                        .padding(.bottom, 10)
+                                    Text("Перевести")
+                                        .padding(.bottom)
+                                        .foregroundColor(.black)
+                                }
+                            }
+                            .alert(isPresented: $isShowingAlert, content: {
+                                Alert(title: Text("Перевод"), message: Text("Перевести 1000 рублей на карту1?"), primaryButton: .cancel(), secondaryButton: .default(Text("Ok"), action: {
+                                    primaryCardAccount -= 1000
+                                }))
+                            })
+                            Spacer()
+                            Button(action: {
+                                print("Открытие карты")
+                            }) {
+                                VStack {
+                                    Image("openCardIcon")
+                                        .padding(.bottom, 5)
+                                    Text("Открыть \nкарту")
+                                        .foregroundColor(.black)
+                                }
+                            }
+                            Spacer()
+                        }
+                    }
+                    Spacer()
                 }
-                .frame(width: 150, height: 40)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .shadow(radius: 8)
-                .cornerRadius(10)
+                .offset(x: isOnToggle ? 300: 0)
+                .animation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.3))
             }
-            
-            HStack {
-                Text("Пример ActionSheet")
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button(action: {
-                    isPresentSheet = true
-                }) {
-                    Text("Показать")
-                }.actionSheet(isPresented: $isPresentSheet) {
-                    ActionSheet(title: Text("Coke or Pepsi?"), message: nil, buttons: [.default(Text("Coke")), .default(Text("Pepsi"))])
-                }
-                .frame(width: 150, height: 40)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .shadow(radius: 8)
-                .cornerRadius(10)
-            }
-            
-            HStack {
-                Text(secondSheetText)
-                    .font(.custom("Inter-Bold", fixedSize: 14))
-                Spacer()
-                Button(action:  {
-                    isShowSheet = true
-                }) {
-                    Text("Показать")
-                }.actionSheet(isPresented: $isShowSheet) {
-                    ActionSheet(title: Text("Coke or Pepsi?"), message: Text("Please, make a choice"), buttons: [.default(Text("Coke"), action: {
-                        secondSheetText = coke
-                    }), .default(Text("Pepsi"), action: {
-                        secondSheetText = pepsi
-                    }), .destructive(Text("Delete"), action: {
-                        secondSheetText = delete
-                    })])
-                }
-                .frame(width: 150, height: 40)
-                .shadow(radius: 8)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .cornerRadius(10)
-            }
+            Toggle(isOn: $isOnToggle, label: {
+                Text("Показать мой кошелёк")
+            })
+            .padding()
         }
-        .padding(.top, -300)
-        .padding()
     }
 }
 
